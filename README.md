@@ -21,3 +21,13 @@ xline - eXtract data from LINE timeline
 - `post`: path of post page ()
 - `text`: post content
 - `title`: posted blog's title (`null` if not blog)
+
+## `-u` URLs
+
+Show post's URLs.
+```
+% curl https://timeline.line.me/user/xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx | xline.sh -u
+https://timeline.line.me/post/xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx/1111111111111111111
+https://timeline.line.me/post/xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx/2222222222222222222
+https://timeline.line.me/post/xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx/3333333333333333333
+```

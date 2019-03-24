@@ -2,11 +2,16 @@
 
 # options
 OPTION_COMPACT_OUTPUT=false
-while getopts c opts
+OPTION_URLONLY_OUTPUT=false
+while getopts cu opts
 do
   case $opts in
   c)  
     OPTION_COMPACT_OUTPUT=true
+  ;;  
+  u)  
+    OPTION_COMPACT_OUTPUT=true
+    OPTION_URLONLY_OUTPUT=true
   ;;  
   \?) 
     exit 1
@@ -27,4 +32,11 @@ cat - \
     else
       cat -
     fi  
+  } \
+  | {
+    if "$OPTION_URLONLY_OUTPUT"; then
+      cat - | grep -oP '(?<="post":")[^"]+' | xargs -I{} echo "$TIMELINE_POST"{}
+    else
+      cat -
+    fi
   }
