@@ -16,6 +16,7 @@ xline - eXtract data from LINE timeline
 {"post":"xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx/1111111111111111111","text":"CONTENTS","title":"TITLE"}
 {"post":"xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx/2222222222222222222","text":"CONTENTS","title":null}
 {"post":"xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx/3333333333333333333","text":"CONTENTS","title":"TITLE"}
+{"post":"xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx/4444444444444444444","text":"CONTENTS","title":null}
 ...
 ```
 - `post`: path of post page ()
@@ -30,4 +31,20 @@ Show post's URLs.
 https://timeline.line.me/post/xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx/1111111111111111111
 https://timeline.line.me/post/xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx/2222222222222222222
 https://timeline.line.me/post/xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx/3333333333333333333
+https://timeline.line.me/post/xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx/4444444444444444444
+```
+
+## `-x` Exclude blog posts
+
+
+```
+% curl https://timeline.line.me/user/xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx | xline.sh -cx
+{"post":"xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx/2222222222222222222","text":"CONTENTS","title":null}
+{"post":"xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx/4444444444444444444","text":"CONTENTS","title":null}
+```
+
+```
+% curl https://timeline.line.me/user/xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx | xline.sh -ux
+https://timeline.line.me/post/xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx/2222222222222222222
+https://timeline.line.me/post/xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx/4444444444444444444
 ```

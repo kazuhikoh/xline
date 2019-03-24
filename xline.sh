@@ -3,7 +3,8 @@
 # options
 OPTION_COMPACT_OUTPUT=false
 OPTION_URLONLY_OUTPUT=false
-while getopts cu opts
+OPTION_EXCLUDE_BLOG=false
+while getopts cux opts
 do
   case $opts in
   c)  
@@ -12,6 +13,9 @@ do
   u)  
     OPTION_COMPACT_OUTPUT=true
     OPTION_URLONLY_OUTPUT=true
+  ;;  
+  x)  
+    OPTION_EXCLUDE_BLOG=true
   ;;  
   \?) 
     exit 1
@@ -22,13 +26,24 @@ shift $((OPTIND - 1))
 readonly TIMELINE_POST='https://timeline.line.me/post/'
 readonly XPATH_INIT_DATA='//*[@id="init_data"]/text()'
 readonly JQ_POSTS='.userHome.feeds[].post'
+readonly JQ_POSTS_EXCLUDE_BLOG=' | select(.additionalContents ==null)'
 readonly JQ_POSTS_COMPACT=' | {post: (.postInfo.homeId + "/" + .postInfo.postId), text:.contents.text, blogTitle:.additionalContents.title, blogUrl:.additionalContents.url.targetUrl}'
 
 cat - \
   | xmllint --xpath "$XPATH_INIT_DATA" --html - 2>/dev/null \
   | {
-    if "$OPTION_COMPACT_OUTPUT"; then
-      cat - | jq -c "${JQ_POSTS}${JQ_POSTS_COMPACT}"
+    if [[ $OPTION_COMPACT_OUTPUT || $OPTION_EXCLUDE_BLOG ]]; then
+      arg="${JQ_POSTS}"
+  
+      if "$OPTION_EXCLUDE_BLOG"; then
+        arg="${arg}${JQ_POSTS_EXCLUDE_BLOG}"
+      fi
+
+      if "$OPTION_COMPACT_OUTPUT"; then
+        arg="${arg}${JQ_POSTS_COMPACT}"
+      fi
+
+      cat - | jq -c "$arg"
     else
       cat -
     fi  
