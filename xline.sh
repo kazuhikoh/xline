@@ -3,7 +3,7 @@
 function usage(){
   cat <<EOF
 Usage:
-  cat https://timeline.line.me/user/xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx | $0 [-hxcu]
+  cat https://timeline.line.me/user/SOMEONE | $0 [-hxcu]
 
 Options:
   -x Exclude blog posts
