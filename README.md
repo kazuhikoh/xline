@@ -3,7 +3,7 @@ xline - eXtract data from LINE timeline
 # Usage
 
 ```
-% curl https://timeline.line.me/user/xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx | xline.sh
+% curl https://timeline.line.me/user/xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx | xline.sh [-hxcu]
 ```
 
 # Options

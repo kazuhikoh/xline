@@ -1,12 +1,28 @@
 #!/bin/bash
 
+function usage(){
+  cat <<EOF
+Usage:
+  cat https://timeline.line.me/user/xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx | $0 [-hxcu]
+
+Options:
+  -x Exclude blog posts
+  -c Compact Output
+  -u URL Only Output
+EOF
+}
+
 # options
 OPTION_COMPACT_OUTPUT=false
 OPTION_URLONLY_OUTPUT=false
 OPTION_EXCLUDE_BLOG=false
-while getopts cux opts
+while getopts hxcu opts
 do
   case $opts in
+  h)  
+    usage
+    exit 0
+  ;;  
   c)  
     OPTION_COMPACT_OUTPUT=true
   ;;  
@@ -18,6 +34,7 @@ do
     OPTION_EXCLUDE_BLOG=true
   ;;  
   \?) 
+    usage
     exit 1
   esac
 done
