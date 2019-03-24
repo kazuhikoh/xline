@@ -13,10 +13,10 @@ xline - eXtract data from LINE timeline
 1 post in 1 line.
 ```
 % curl https://timeline.line.me/user/xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx | xline.sh -c
-{"post":"xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx/1111111111111111111","text":"CONTENTS","title":"TITLE"}
-{"post":"xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx/2222222222222222222","text":"CONTENTS","title":null}
-{"post":"xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx/3333333333333333333","text":"CONTENTS","title":"TITLE"}
-{"post":"xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx/4444444444444444444","text":"CONTENTS","title":null}
+{"post":"xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx/1111111111111111111","text":"CONTENTS","blogTitle":"TITLE",blogUrl:"https://xxxx"}
+{"post":"xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx/2222222222222222222","text":"CONTENTS","blogTitle":null,blogUrl:null}
+{"post":"xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx/3333333333333333333","text":"CONTENTS","blogTitle":"TITLE",blogUrl:"https://xxxx"}
+{"post":"xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx/4444444444444444444","text":"CONTENTS","blogTitle":null,blogUrl:null}
 ...
 ```
 - `post`: path of post page ()
@@ -39,8 +39,8 @@ https://timeline.line.me/post/xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx/444444444
 
 ```
 % curl https://timeline.line.me/user/xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx | xline.sh -cx
-{"post":"xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx/2222222222222222222","text":"CONTENTS","title":null}
-{"post":"xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx/4444444444444444444","text":"CONTENTS","title":null}
+{"post":"xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx/2222222222222222222","text":"CONTENTS","blogTitle":null,"blogUrl":null}
+{"post":"xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx/4444444444444444444","text":"CONTENTS","blogTitle":null,"blogUrl":null}
 ```
 
 ```
