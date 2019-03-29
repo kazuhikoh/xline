@@ -40,6 +40,21 @@ do
 done
 shift $((OPTIND - 1))
 
+function requirements(){
+  reqs="cat grep xargs xmllint jq"
+  ok=true
+  for cmd in $reqs; do
+    if ! type $cmd >/dev/null 2>&1; then
+      echo "Required: $cmd" >&2
+      ok=false
+    fi
+  done
+  if ! $ok; then
+    exit 1
+  fi
+}
+requirements
+
 readonly TIMELINE_POST='https://timeline.line.me/post/'
 readonly XPATH_INIT_DATA='//*[@id="init_data"]/text()'
 readonly JQ_POSTS='.userHome.feeds[].post'
