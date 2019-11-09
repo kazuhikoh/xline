@@ -41,7 +41,7 @@ done
 shift $((OPTIND - 1))
 
 function requirements(){
-  reqs="cat grep xargs xmllint jq"
+  reqs="cat grep xargs jq"
   ok=true
   for cmd in $reqs; do
     if ! type $cmd >/dev/null 2>&1; then
@@ -56,13 +56,13 @@ function requirements(){
 requirements
 
 readonly TIMELINE_POST='https://timeline.line.me/post/'
-readonly XPATH_INIT_DATA='//*[@id="init_data"]/text()'
 readonly JQ_POSTS='.userHome.feeds[].post'
 readonly JQ_POSTS_EXCLUDE_BLOG=' | select(.additionalContents == null)'
 readonly JQ_POSTS_COMPACT=' | {post: (.postInfo.homeId + "/" + .postInfo.postId), text:.contents.text, blogTitle:.additionalContents.title, blogUrl:.additionalContents.url.targetUrl}'
 
 cat - \
-  | xmllint --xpath "$XPATH_INIT_DATA" --html - 2>/dev/null \
+  | grep 'id="init_data"' \
+  | grep -oP '{.*}' \
   | {
     if [[ $OPTION_COMPACT_OUTPUT || $OPTION_EXCLUDE_BLOG ]]; then
       arg="${JQ_POSTS}"
